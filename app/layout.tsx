@@ -25,9 +25,9 @@ export const viewport = {
 }
 
 export const metadata: Metadata = {
-    title: 'psychoroid.com',
+    title: 'supabrowser.ai',
     description: 'Generate and customize 3D assets with AI. Convert text and images to high-quality models, optimize for games, 3D printing, and e-commerce. Chat, download, ship.',
-    metadataBase: new URL('https://psychoroid.com'),
+    metadataBase: new URL('https://supabrowser.ai'),
     keywords: '3D viewer, AI 3D, open source, product visualization, 3D modeling, game development, WebGL, Blender, Unity, Unreal Engine, Godot, generative AI, 3D engine, interactive 3D, 3D scan, AR, VR, metaverse, 3D print, CAD, mesh, texturing, rigging, animation, opensource',
     authors: [{ name: 'Princemuichkine' }],
     creator: 'Princemuichkine',
@@ -46,22 +46,22 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://psychoroid.com',
-        title: 'psychoroid.com | The Open Source Generative AI 3D Engine',
+        url: 'https://supabrowser.ai',
+        title: 'supabrowser.ai | The Open Source Generative AI 3D Engine',
         description: 'The open source generative AI, 3D engine for product visualization, 3D modeling, and game development. Chat, download, ship.',
-        siteName: 'psychoroid.com',
+        siteName: 'supabrowser.ai',
         images: [
             {
                 url: '/psychoroid.png',
                 width: 575,
                 height: 575,
-                alt: 'psychoroid.com | The Open Source Generative AI 3D Engine',
+                alt: 'supabrowser.ai | The Open Source Generative AI 3D Engine',
             }
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'psychoroid.com | The Open Source Generative AI 3D Engine',
+        title: 'supabrowser.ai | The Open Source Generative AI 3D Engine',
         description: 'The open source generative AI, 3D engine for product visualization, 3D modeling, and game development. Chat, download, ship.',
         creator: '@Princemuichkine',
         images: [
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
                 url: '/psychoroid.png',
                 width: 575,
                 height: 575,
-                alt: 'psychoroid.com | The Open Source Generative AI 3D Engine',
+                alt: 'supabrowser.ai | The Open Source Generative AI 3D Engine',
             }
         ],
     },
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     appleWebApp: {
         capable: true,
         statusBarStyle: 'default',
-        title: 'psychoroid.com',
+        title: 'supabrowser.ai',
     },
 }
 

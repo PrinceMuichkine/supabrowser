@@ -1,11 +1,9 @@
 'use client'
 
-import { ImageUpload } from '@/components/3D/ImageUpload'
 import { Navbar } from '@/components/design/Navbar'
 import { useState, useEffect } from 'react'
 import { useUser } from '@/lib/contexts/UserContext'
 import { Footer } from '@/components/design/Footer'
-import P0Element from '@/components/design/p0-element'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/lib/contexts/TranslationContext'
 import { t } from '@/lib/i18n/translations'
@@ -79,10 +77,6 @@ export default function Home() {
             </AnimatePresence> */}
             <div className="h-8" />
 
-            <div className="fixed inset-0 pointer-events-none z-0 hidden md:block">
-                <P0Element />
-            </div>
-
             <div className="sticky top-8 z-50 bg-gray-50 dark:bg-background">
                 <Navbar />
             </div>
@@ -108,22 +102,6 @@ export default function Home() {
                     >
                         {mounted ? t(currentLanguage, 'ui.create_help') : ''}
                     </motion.h1>
-
-                    <motion.div
-                        initial={{ scale: 0.95, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{
-                            duration: 0.8,
-                            ease: [0.22, 1, 0.36, 1]
-                        }}
-                        className="px-2 md:px-4"
-                    >
-                        <ImageUpload
-                            onImageUpload={handleImageUpload}
-                            onModelUrlChange={handleModelUrlChange}
-                            onProgressUpdate={handleProgressUpdate}
-                        />
-                    </motion.div>
                 </div>
             </motion.main>
             <Footer />

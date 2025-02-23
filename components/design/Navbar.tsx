@@ -11,7 +11,7 @@ import { useUser } from '@/lib/contexts/UserContext';
 import { Coins, Menu } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 import { DockDropdown } from './DockDropdown';
-import { CompanyDropdown } from './dropdowns/PsychoroidDropdown';
+import { CompanyDropdown } from './dropdowns/CompanyDropdown';
 // import { EngineDropdown } from './dropdowns/EngineDropdown';
 import { getLocalStorageItem, setLocalStorageItem, clearAuthState } from '@/lib/utils/localStorage';
 import { useTranslation } from '@/lib/contexts/TranslationContext';

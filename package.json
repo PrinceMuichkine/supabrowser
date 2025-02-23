@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_NO_WARNINGS=1 bun dev",
-    "build": "bun build",
-    "start": "bun start",
-    "lint": "bun lint",
+    "dev": "NODE_NO_WARNINGS=1 bun --bun next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "generate-sitemap": "python scripts/generate_sitemap.py",
     "sanity": "cd sanity && sanity dev"
   },
@@ -75,7 +75,9 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.50.1",
     "@shadcn/ui": "^0.0.4",
+    "@types/bun": "latest",
     "@types/file-saver": "^2.0.7",
     "@types/lodash": "^4.17.14",
     "@types/node": "^20.17.16",
@@ -83,16 +85,12 @@
     "@types/react-dom": "^18.3.5",
     "@types/three": "^0.160.0",
     "autoprefixer": "^10.4.20",
-    "compression-webpack-plugin": "^11.1.0",
     "eslint": "8.57.1",
     "eslint-config-next": "15.1.0",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
-    "terser-webpack-plugin": "^5.3.11",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3",
-    "webpack-obfuscator": "^3.5.1",
-    "@types/bun": "latest"
+    "typescript": "^5.7.3"
   },
   "module": "index.ts",
   "type": "module"

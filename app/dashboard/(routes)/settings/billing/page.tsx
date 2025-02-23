@@ -1,7 +1,5 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
-import BillingForm from '@/components/dashboard/BillingForm'
 import { useTranslation } from '@/lib/contexts/TranslationContext'
 import { t } from '@/lib/i18n/translations'
 
@@ -18,12 +16,6 @@ export default function BillingPage() {
                     {t(currentLanguage, 'ui.settings.billing.description')}
                 </p>
             </div>
-
-            <Card className="border border-border rounded-none bg-card">
-                <div className="p-4 sm:p-6">
-                    <BillingForm />
-                </div>
-            </Card>
-        </div>
+        </div >
     )
 } 

@@ -1,7 +1,6 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import AccountForm from '@/components/dashboard/AccountForm'
 import { useTranslation } from '@/lib/contexts/TranslationContext'
 import { t } from '@/lib/i18n/translations'
 
@@ -18,12 +17,6 @@ export default function AccountPage() {
                     {t(currentLanguage, 'ui.settings.account.description')}
                 </p>
             </div>
-
-            <Card className="border border-border rounded-none bg-card">
-                <div className="p-4 sm:p-6">
-                    <AccountForm />
-                </div>
-            </Card>
         </div>
     )
 } 

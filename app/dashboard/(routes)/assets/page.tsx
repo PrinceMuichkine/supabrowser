@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react';
-import { UserAssetsList } from '@/components/dashboard/UserAssetsList';
 import { supabase } from '@/lib/supabase/supabase';
 import { useUser } from '@/lib/contexts/UserContext';
 import { useTranslation } from '@/lib/contexts/TranslationContext';
@@ -80,17 +79,4 @@ export default function AssetsPage() {
         setCurrentPage(1);
         fetchAssets(1, query);
     }, [fetchAssets]);
-
-    return (
-        <UserAssetsList
-            assets={assets}
-            isLoading={isLoading}
-            onSearch={handleSearch}
-            onPageChange={setCurrentPage}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onAssetUpdate={() => fetchAssets(currentPage)}
-            error={error}
-        />
-    );
 } 

@@ -1,7 +1,6 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import ApiForm from '@/components/dashboard/ApiForm'
 import { useTranslation } from '@/lib/contexts/TranslationContext'
 import { t } from '@/lib/i18n/translations'
 
@@ -19,11 +18,6 @@ export default function ApiPage() {
                 </p>
             </div>
 
-            <Card className="border border-border rounded-none bg-card">
-                <div className="p-4 sm:p-6">
-                    <ApiForm />
-                </div>
-            </Card>
         </div>
     )
 } 
