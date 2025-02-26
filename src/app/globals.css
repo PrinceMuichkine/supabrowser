@@ -6,12 +6,12 @@
   --main: #ff6b6b;
   --overlay: rgba(0, 0, 0, 0.8); /* background color overlay for alert dialogs, modals, etc. */
 
-  --bg: #fcd7d7;
+  --bg: #f5f5f5;
   --bw: #fff; /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
   --blank: #000; /* blank black and white */
   --border: #000;
   --text: #000;
-  --mtext: #000; /* text that is placed on background with main color e.g. text color of default button */
+  --mtext: #fff; /* text that is placed on background with main color e.g. text color of default button */
   --ring: #000;
   --ring-offset: #fff;
 
@@ -27,14 +27,14 @@
 }
 
 .dark {
-  --bg: #272933;
-  --bw: #212121;
-  --blank: #fff;
-  --border: #000;
-  --text: #e6e6e6;
-  --mtext: #000;
-  --ring: #fff;
-  --ring-offset: #000;
+  --bg: #f0e6e6; /* Lighter background for dark mode */
+  --bw: #f8f8f8; /* Lighter background-white for dark mode */
+  --blank: #333; /* Lighter blank color for dark mode */
+  --border: #555; /* Lighter border for dark mode */
+  --text: #333; /* Darker text for better contrast on light background */
+  --mtext: #000; /* Text on main color elements */
+  --ring: #555; /* Lighter ring color */
+  --ring-offset: #f0f0f0; /* Lighter ring offset */
 
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
 }

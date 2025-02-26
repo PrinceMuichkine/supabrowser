@@ -33,10 +33,10 @@ export function Navbar() {
     ]
 
     return (
-        <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 transform">
+        <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 transform">
             <FloatingDock
                 items={navItems}
-                desktopClassName="border-6 border-border shadow-shadow"
+                desktopClassName="border-2 border-border shadow-shadow bg-bw"
             />
         </div>
     )
