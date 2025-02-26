@@ -102,7 +102,7 @@ export default function DashboardPage() {
                                             <Button variant="outline" size="sm">
                                                 Visit
                                             </Button>
-                                            <Button variant="ghost" size="sm" className="text-red-500">
+                                            <Button variant="ghost" size="sm" className="text-[#FF073A]">
                                                 Remove
                                             </Button>
                                         </div>

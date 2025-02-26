@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/actions/utils";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
@@ -17,7 +18,14 @@ export const FloatingDock = ({
     desktopClassName,
     mobileClassName,
 }: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
+    items: {
+        title: string;
+        icon: React.ReactNode;
+        href: string;
+        bgColor?: string;
+        iconColor?: string;
+        onClick?: () => void;
+    }[];
     desktopClassName?: string;
     mobileClassName?: string;
 }) => {
@@ -33,7 +41,14 @@ const FloatingDockMobile = ({
     items,
     className,
 }: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
+    items: {
+        title: string;
+        icon: React.ReactNode;
+        href: string;
+        bgColor?: string;
+        iconColor?: string;
+        onClick?: () => void;
+    }[];
     className?: string;
 }) => {
     const [open, setOpen] = useState(false);
@@ -62,13 +77,30 @@ const FloatingDockMobile = ({
                                 }}
                                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
                             >
-                                <Link
-                                    href={item.href}
-                                    key={item.title}
-                                    className="h-10 w-10 rounded-[5px] bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
-                                >
-                                    <div className="h-4 w-4">{item.icon}</div>
-                                </Link>
+                                {item.onClick ? (
+                                    <button
+                                        onClick={item.onClick}
+                                        className={cn(
+                                            "h-12 w-12 rounded-[5px] flex items-center justify-center p-0",
+                                            item.bgColor || "bg-white dark:bg-white",
+                                            item.iconColor || "text-black dark:text-black"
+                                        )}
+                                    >
+                                        <div className="h-full w-full">{item.icon}</div>
+                                    </button>
+                                ) : (
+                                    <Link
+                                        href={item.href}
+                                        key={item.title}
+                                        className={cn(
+                                            "h-12 w-12 rounded-[5px] flex items-center justify-center p-0",
+                                            item.bgColor || "bg-white dark:bg-white",
+                                            item.iconColor || "text-black dark:text-black"
+                                        )}
+                                    >
+                                        <div className="h-full w-full">{item.icon}</div>
+                                    </Link>
+                                )}
                             </motion.div>
                         ))}
                     </motion.div>
@@ -76,9 +108,9 @@ const FloatingDockMobile = ({
             </AnimatePresence>
             <button
                 onClick={() => setOpen(!open)}
-                className="h-10 w-10 rounded-[5px] bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+                className="h-12 w-12 rounded-[5px] bg-white dark:bg-white flex items-center justify-center text-black dark:text-black p-0"
             >
-                <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+                <IconLayoutNavbarCollapse className="h-full w-full" />
             </button>
         </div>
     );
@@ -88,7 +120,14 @@ const FloatingDockDesktop = ({
     items,
     className,
 }: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
+    items: {
+        title: string;
+        icon: React.ReactNode;
+        href: string;
+        bgColor?: string;
+        iconColor?: string;
+        onClick?: () => void;
+    }[];
     className?: string;
 }) => {
     const mouseX = useMotionValue(Infinity);
@@ -97,7 +136,7 @@ const FloatingDockDesktop = ({
             onMouseMove={(e: React.MouseEvent) => mouseX.set(e.pageX)}
             onMouseLeave={() => mouseX.set(Infinity)}
             className={cn(
-                "mx-auto hidden md:flex h-16 w-auto min-w-[500px] gap-6 items-end rounded-[5px] bg-gray-50 dark:bg-neutral-900 px-6 pb-3",
+                "mx-auto hidden md:flex h-16 w-auto min-w-[280px] gap-2 items-center justify-center rounded-[5px] bg-bw dark:bg-bw px-2 py-2",
                 className
             )}
         >
@@ -113,11 +152,17 @@ function IconContainer({
     title,
     icon,
     href,
+    bgColor,
+    iconColor,
+    onClick,
 }: {
     mouseX: MotionValue;
     title: string;
     icon: React.ReactNode;
     href: string;
+    bgColor?: string;
+    iconColor?: string;
+    onClick?: () => void;
 }) {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -127,14 +172,22 @@ function IconContainer({
         return val - bounds.x - bounds.width / 2;
     });
 
-    const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-    const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+    const widthTransform = useTransform(distance, [-150, 0, 150], [48, 60, 48]);
+    const heightTransform = useTransform(distance, [-150, 0, 150], [48, 60, 48]);
 
-    const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+    // Check if this is the Supabrowser icon by title
+    const isSupabrowser = title === "Supabrowser";
+
+    // Use larger values for the Supabrowser icon
+    const widthTransformIcon = useTransform(
+        distance,
+        [-150, 0, 150],
+        isSupabrowser ? [47, 56, 47] : [36, 45, 36]
+    );
     const heightTransformIcon = useTransform(
         distance,
         [-150, 0, 150],
-        [20, 40, 20]
+        isSupabrowser ? [47, 56, 47] : [36, 45, 36]
     );
 
     const width = useSpring(widthTransform, {
@@ -161,6 +214,47 @@ function IconContainer({
 
     const [hovered, setHovered] = useState(false);
 
+    // All icons use the same container now
+    if (onClick) {
+        return (
+            <button
+                onClick={onClick}
+                type="button"
+            >
+                <motion.div
+                    ref={ref}
+                    style={{ width, height }}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    className={cn(
+                        "aspect-square rounded-[5px] flex items-center justify-center relative p-0",
+                        bgColor || "bg-gray-100 dark:bg-gray-100",
+                        iconColor || "text-black dark:text-black"
+                    )}
+                >
+                    <AnimatePresence>
+                        {hovered && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10, x: "-50%" }}
+                                animate={{ opacity: 1, y: 0, x: "-50%" }}
+                                exit={{ opacity: 0, y: 2, x: "-50%" }}
+                                className="px-2 py-0.5 whitespace-pre rounded-[5px] bg-white border dark:bg-bw dark:border-border dark:text-text border-gray-200 text-black absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+                            >
+                                {title}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                    <motion.div
+                        style={{ width: widthIcon, height: heightIcon }}
+                        className="flex items-center justify-center w-full h-full"
+                    >
+                        {icon}
+                    </motion.div>
+                </motion.div>
+            </button>
+        );
+    }
+
     return (
         <Link href={href}>
             <motion.div
@@ -168,7 +262,11 @@ function IconContainer({
                 style={{ width, height }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                className="aspect-square rounded-[5px] bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+                className={cn(
+                    "aspect-square rounded-[5px] flex items-center justify-center relative p-0",
+                    bgColor || "bg-gray-100 dark:bg-gray-100",
+                    iconColor || "text-black dark:text-black"
+                )}
             >
                 <AnimatePresence>
                     {hovered && (
@@ -176,7 +274,7 @@ function IconContainer({
                             initial={{ opacity: 0, y: 10, x: "-50%" }}
                             animate={{ opacity: 1, y: 0, x: "-50%" }}
                             exit={{ opacity: 0, y: 2, x: "-50%" }}
-                            className="px-2 py-0.5 whitespace-pre rounded-[5px] bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+                            className="px-2 py-0.5 whitespace-pre rounded-[5px] bg-white border dark:bg-bw dark:border-border dark:text-text border-gray-200 text-black absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
                         >
                             {title}
                         </motion.div>
@@ -184,7 +282,7 @@ function IconContainer({
                 </AnimatePresence>
                 <motion.div
                     style={{ width: widthIcon, height: heightIcon }}
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center w-full h-full"
                 >
                     {icon}
                 </motion.div>

@@ -5,6 +5,7 @@
 :root {
   --main: #ff6b6b;
   --overlay: rgba(0, 0, 0, 0.8); /* background color overlay for alert dialogs, modals, etc. */
+  --supayellow: #FFDF00;
 
   --bg: #f5f5f5;
   --bw: #fff; /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
@@ -27,16 +28,16 @@
 }
 
 .dark {
-  --bg: #f0e6e6; /* Lighter background for dark mode */
-  --bw: #f8f8f8; /* Lighter background-white for dark mode */
-  --blank: #333; /* Lighter blank color for dark mode */
-  --border: #555; /* Lighter border for dark mode */
-  --text: #333; /* Darker text for better contrast on light background */
-  --mtext: #000; /* Text on main color elements */
-  --ring: #555; /* Lighter ring color */
-  --ring-offset: #f0f0f0; /* Lighter ring offset */
+  --bg: #1a1a1a; /* Dark grey background */
+  --bw: #212121; /* Darker background-white for dark mode */
+  --blank: #fff; /* Inverted blank color for dark mode */
+  --border: #333; /* Darker border for dark mode */
+  --text: #f0f0f0; /* Light text for better contrast on dark background */
+  --mtext: #fff; /* Text on main color elements */
+  --ring: #333; /* Darker ring color */
+  --ring-offset: #1a1a1a; /* Darker ring offset */
 
-  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px #333;
 }
 
 @layer base {
