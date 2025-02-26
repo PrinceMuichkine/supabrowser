@@ -3,7 +3,7 @@
  */
 
 // Application Information
-export const APP_NAME = 'SupaBrowser';
+export const APP_NAME = 'supabrowser';
 export const APP_VERSION = '0.1.0';
 
 // API endpoints and routes

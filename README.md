@@ -1,1 +1,1 @@
-# SupaBrowser
+# supabrowser.com
