@@ -1,7 +1,7 @@
 "use client"
 
 import { FloatingDock } from "@/components/ui/dock"
-import { Github, Home, Layers, Moon, Sun } from "lucide-react"
+import { Home, Moon, Rabbit, SquarePercent, Sun, BookOpen, PackageOpen, SquareDashedBottomCode } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import Image from "next/image"
@@ -23,10 +23,17 @@ export const Navbar = () => {
         },
         {
             title: "Dashboard",
-            icon: <Layers className="h-[75%] w-[75%]" />,
+            icon: <SquareDashedBottomCode className="h-[75%] w-[75%]" />,
             href: "/dashboard",
-            bgColor: "bg-iconBg-browser dark:bg-darkIconBg-browser",
-            iconColor: "text-iconColor-browser dark:text-darkIconColor-browser"
+            bgColor: "bg-iconBg-dashboard dark:bg-darkIconBg-dashboard",
+            iconColor: "text-iconColor-dashboard dark:text-darkIconColor-dashboard"
+        },
+        {
+            title: "Blog",
+            icon: <Rabbit className="h-[75%] w-[75%]" />,
+            href: "/blog",
+            bgColor: "bg-iconBg-blog dark:bg-darkIconBg-blog",
+            iconColor: "text-iconColor-blog dark:text-darkIconColor-blog"
         },
         {
             title: "Supabrowser",
@@ -42,14 +49,28 @@ export const Navbar = () => {
                     />
                 </div>
             ),
-            href: "/",
-            bgColor: "bg-transparent dark:bg-transparent",
-            iconColor: "text-transparent dark:text-transparent"
+            href: "/browser",
+            bgColor: "bg-iconBg-browser dark:bg-darkIconBg-browser",
+            iconColor: "text-iconColor-browser dark:text-darkIconColor-browser"
         },
         {
-            title: "GitHub",
-            icon: <Github className="h-[75%] w-[75%]" />,
-            href: "https://github.com/supabrowser/supabrowser",
+            title: "Pricing",
+            icon: <SquarePercent className="h-[75%] w-[75%]" />,
+            href: "/pricing",
+            bgColor: "bg-iconBg-pricing dark:bg-darkIconBg-pricing",
+            iconColor: "text-iconColor-pricing dark:text-darkIconColor-pricing"
+        },
+        {
+            title: "Docs",
+            icon: <BookOpen className="h-[75%] w-[75%]" />,
+            href: "/docs",
+            bgColor: "bg-iconBg-docs dark:bg-darkIconBg-docs",
+            iconColor: "text-iconColor-docs dark:text-darkIconColor-docs"
+        },
+        {
+            title: "Open Source",
+            icon: <PackageOpen className="h-[75%] w-[75%]" />,
+            href: "https://github.com/princemuichkine/supabrowser",
             bgColor: "bg-iconBg-github dark:bg-darkIconBg-github",
             iconColor: "text-iconColor-github dark:text-darkIconColor-github"
         },
@@ -71,7 +92,7 @@ export const Navbar = () => {
 
     return (
         <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 transform hidden md:block">
-            <FloatingDock items={navItems} desktopClassName="border-2 border-border shadow-shadow" />
+            <FloatingDock items={navItems} desktopClassName="border-2 border-border shadow-shadow rounded-[5px]" />
         </div>
     )
 } 

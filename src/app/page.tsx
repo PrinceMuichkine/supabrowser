@@ -1,11 +1,9 @@
 "use client"
 
-import Link from 'next/link';
-import { BookOpen } from 'lucide-react';
 import { TopBanner } from '@/components/ui/top-banner';
 import CookieConsent from '@/components/ui/tracking-cookie';
 import { Navbar } from '@/components/layout/navbar';
-import Image from 'next/image';
+import { ButtonExpandDocs, ButtonExpandBrowser } from '@/components/ui/button-expand';
 
 export default function Home() {
 
@@ -29,38 +27,19 @@ export default function Home() {
               Enable AI to browse the web for you and build complex automated workflows in minutes.
             </p>
             <div className="flex flex-wrap justify-start gap-3 md:gap-4">
-              <Link
-                href="/docs"
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-bw border-2 border-border text-text font-heading rounded-base flex items-center gap-2 hover:translate-y-[-2px] transition-all shadow-shadow hover:shadow-none text-sm sm:text-base"
-              >
-                View Docs <BookOpen className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Link>
-              <Link
-                href="/browser"
-                className="px-4 sm:px-6 py-2.5 sm:py-3 dark:bg-[#FFDF00] bg-[#FF073A] text-black font-heading rounded-base border-2 border-border dark:border-border flex items-center gap-2 hover:translate-y-[-2px] transition-all shadow-shadow hover:shadow-none text-sm sm:text-base"
-              >
-                Launch Browser
-                <div className="h-6 w-6 sm:h-7 sm:w-7 relative">
-                  <Image
-                    src="/images/icon.svg"
-                    alt="Supabrowser Logo"
-                    width={80}
-                    height={80}
-                    className="object-contain w-full h-full"
-                  />
-                </div>
-              </Link>
+              <ButtonExpandDocs />
+              <ButtonExpandBrowser />
             </div>
           </div>
 
-          {/* Right Column - Browser Demo */}
+          {/* Right Column - Browser Demo
           <div className="w-full md:w-1/2 pt-8 md:pt-4 mt-4 md:mt-0">
             <div className="rounded-base border-2 border-border overflow-hidden shadow-shadow max-w-[500px] mx-auto md:mx-0 md:ml-auto">
               <div className="bg-bw p-1.5 sm:p-2 flex items-center gap-2 border-b border-border">
                 <div className="flex gap-1 sm:gap-1.5">
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF073A]"></div>
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[5px] bg-[#FF073A]"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[5px] bg-yellow-500"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[5px] bg-green-500"></div>
                 </div>
                 <div className="flex-1 text-center text-xs sm:text-sm text-text/70">app.supabrowser.com</div>
               </div>
@@ -72,14 +51,15 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div> */}
         </div>
+
+        {/* Navigation */}
+        <Navbar />
+
+        {/* Cookie Consent */}
+        <CookieConsent />
       </div>
-
-      {/* Navigation */}
-      <Navbar />
-
-      {/* Cookie Consent */}
-      <CookieConsent />
     </div>
   );
 }

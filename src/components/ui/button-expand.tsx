@@ -1,6 +1,8 @@
-import { ArrowRight, LucideIcon, Phone, ArrowLeft } from "lucide-react"
+import { ArrowRight, LucideIcon, Phone, ArrowLeft, BookOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/actions/utils"
+import Image from "next/image"
+import { useState } from "react"
 
 interface ButtonExpandProps {
     text: string;
@@ -13,6 +15,7 @@ interface ButtonExpandProps {
     className?: string;
     iconPlacement?: 'left' | 'right';
     type?: 'button' | 'submit' | 'reset';
+    expandOnHover?: boolean;
 }
 
 function ButtonExpand({
@@ -21,25 +24,38 @@ function ButtonExpand({
     bgColor = "bg-green-50 dark:bg-green-900/30",
     textColor = "text-green-700 dark:text-green-300",
     hoverBgColor = "hover:bg-green-100 dark:hover:bg-green-900/40",
-    hoverTextColor = "hover:text-green-800 dark:hover:text-green-200",
+    hoverTextColor = "hover:text-green-800 dark:hover:text-green-800",
     onClick,
     className,
     iconPlacement = 'right',
-    type = 'button'
+    type = 'button',
+    expandOnHover = false
 }: ButtonExpandProps) {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <Button
             type={type}
             variant="outline"
             className={cn(
-                `text-lg sm:text-base font-medium ${textColor} ${hoverTextColor} ${bgColor} ${hoverBgColor} shadow-shadow transition-all duration-300 h-[52px] sm:h-10 px-[32px] sm:px-4 focus:outline-none focus-visible:outline-none`,
+                `text-lg sm:text-base font-medium ${textColor} ${hoverTextColor} ${bgColor} ${hoverBgColor} shadow-shadow transition-all duration-300 h-[60px] sm:h-12 px-[32px] sm:px-4 focus:outline-none focus-visible:outline-none flex items-center`,
                 className
             )}
             onClick={onClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-            {iconPlacement === 'left' && <Icon className="h-4 w-4 mr-2" />}
-            {text}
-            {iconPlacement === 'right' && <Icon className="h-4 w-4 ml-2" />}
+            {iconPlacement === 'left' && <Icon className="h-6 w-6 mr-2" />}
+            <span>{text}</span>
+            {iconPlacement === 'right' && (
+                expandOnHover ? (
+                    <span className={`overflow-hidden transition-all duration-300 flex items-center ${isHovered ? 'w-8 ml-2 opacity-100' : 'w-0 opacity-0'}`}>
+                        <Icon className="h-6 w-6" />
+                    </span>
+                ) : (
+                    <Icon className="h-6 w-6 ml-2" />
+                )
+            )}
         </Button>
     )
 }
@@ -49,6 +65,7 @@ function ButtonExpandIconRight() {
     return (
         <ButtonExpand
             text="Connect"
+            expandOnHover={true}
             onClick={() => window.location.href = '/sign-in'}
         />
     )
@@ -63,7 +80,8 @@ function ButtonExpandTalkToUs() {
             bgColor="bg-blue-50 dark:bg-blue-900/30"
             textColor="text-blue-700 dark:text-blue-300"
             hoverBgColor="hover:bg-blue-100 dark:hover:bg-blue-900/40"
-            hoverTextColor="hover:text-blue-800 dark:hover:text-blue-200"
+            hoverTextColor="hover:text-blue-800 dark:hover:text-blue-800"
+            expandOnHover={true}
             onClick={() => window.open('https://cal.com/babacar-diop-umkvq2/30min', '_blank')}
         />
     )
@@ -78,7 +96,7 @@ function ButtonExpandBack({ onClick, text }: { onClick?: () => void, text: strin
             iconPlacement="left"
             bgColor="bg-zinc-900/90 dark:bg-black/50"
             textColor="text-zinc-100 dark:text-sage-100"
-            hoverTextColor="hover:text-white dark:hover:text-sage-200"
+            hoverTextColor="hover:text-black dark:hover:text-gray-800"
             hoverBgColor="hover:bg-zinc-900"
             className="relative z-20 inline-flex items-center transition-colors px-4 py-2 rounded-none border-zinc-800 border w-fit shadow-none backdrop-blur-sm"
             onClick={onClick}
@@ -86,9 +104,62 @@ function ButtonExpandBack({ onClick, text }: { onClick?: () => void, text: strin
     )
 }
 
+// Pre-configured button for Docs action
+function ButtonExpandDocs() {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <Button
+            variant="outline"
+            className={cn(
+                "text-lg sm:text-base font-heading text-text bg-bw hover:bg-bw/90 border-2 border-border rounded-base shadow-shadow transition-all duration-300 h-[60px] sm:h-12 px-[32px] sm:px-4 focus:outline-none focus-visible:outline-none hover:translate-y-[-2px] hover:shadow-none group flex items-center"
+            )}
+            onClick={() => window.location.href = '/docs'}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <span>View Docs</span>
+            <span className={`overflow-hidden transition-all duration-300 flex items-center ${isHovered ? 'w-6 ml-2 opacity-100' : 'w-0 opacity-0'}`}>
+                <BookOpen className="h-5 w-5" />
+            </span>
+        </Button>
+    )
+}
+
+// Pre-configured button for Browser action
+function ButtonExpandBrowser() {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <Button
+            variant="outline"
+            className={cn(
+                "text-lg sm:text-base font-heading text-black dark:text-black dark:bg-[#FFDF00] bg-[#FF073A] border-2 border-border dark:border-border rounded-base shadow-shadow transition-all duration-300 h-[60px] sm:h-12 px-[32px] sm:px-4 focus:outline-none focus-visible:outline-none hover:translate-y-[-2px] hover:shadow-none group flex items-center justify-center"
+            )}
+            onClick={() => window.location.href = '/browser'}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <span>Supabrowser</span>
+            <div className={`overflow-hidden transition-all duration-300 flex items-center justify-center ${isHovered ? 'w-8 ml-2 opacity-100' : 'w-0 opacity-0'}`}>
+                <Image
+                    src="/images/icon.svg"
+                    alt="Supabrowser Logo"
+                    width={32}
+                    height={32}
+                    className="transition-transform duration-300"
+                    priority
+                />
+            </div>
+        </Button>
+    )
+}
+
 export {
     ButtonExpand,
     ButtonExpandIconRight,
     ButtonExpandTalkToUs,
-    ButtonExpandBack
+    ButtonExpandBack,
+    ButtonExpandDocs,
+    ButtonExpandBrowser
 } 
